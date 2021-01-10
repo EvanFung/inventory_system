@@ -3,6 +3,7 @@ package com.hktv.hktv_interview.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -52,6 +53,7 @@ public class Stock {
     public void setQty(int qty) {
         this.qty = qty;
     }
+
     @Basic
     @Column(name = "type")
     public String getType() {
@@ -112,7 +114,7 @@ public class Stock {
         this.warehouse = getWarehouseByWarehouseId;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "destStock",cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "destStock", cascade = CascadeType.ALL)
     public Set<Dispatch> getDestDispatch() {
         return destDispatch;
     }
@@ -120,12 +122,26 @@ public class Stock {
     public void setDestDispatch(Set<Dispatch> destDispatch) {
         this.destDispatch = destDispatch;
     }
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sourStock",cascade=CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sourStock", cascade = CascadeType.ALL)
     public Set<Dispatch> getSourDispatch() {
         return sourDispatch;
     }
 
     public void setSourDispatch(Set<Dispatch> sourDispatch) {
         this.sourDispatch = sourDispatch;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Stock stock = (Stock) o;
+        return warehouseId.equals(stock.warehouseId) && productId.equals(stock.productId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(warehouseId, productId);
     }
 }
