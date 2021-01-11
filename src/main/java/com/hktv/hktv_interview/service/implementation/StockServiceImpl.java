@@ -8,6 +8,7 @@ import com.hktv.hktv_interview.repository.InventoryRepository;
 import com.hktv.hktv_interview.repository.StockRepository;
 import com.hktv.hktv_interview.service.StockService;
 import com.hktv.hktv_interview.utils.CSVHelper;
+import com.hktv.hktv_interview.utils.IStockCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,6 +76,7 @@ public class StockServiceImpl implements StockService {
         return stocks.stream().collect(Collectors.toList());
     }
 
+
     @Override
     public void uploadStock(MultipartFile file) {
         try {
@@ -86,15 +88,22 @@ public class StockServiceImpl implements StockService {
                 int warehouseId = stock.getWarehouseId();
                 int productId = stock.getProductId();
                 Optional<Inventory> inventory = inventoryRepository.findByProductIdAndWarehouseId(productId, warehouseId);
-                if(inventory.isPresent()) {
-                  Inventory i =   inventory.get();
-                  i.setQty(i.getQty() + stock.getQty());
-                  inventoryRepository.save(i);
+                if (inventory.isPresent()) {
+                    Inventory i = inventory.get();
+                    i.setQty(i.getQty() + stock.getQty());
+                    inventoryRepository.save(i);
                 }
             });
-        }catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("fail to store csv data: " + e.getMessage());
         }
+    }
+
+    @Override
+    public List<IStockCount> findGroupStockByProductIdAndType(String type, Integer productId) {
+        List<IStockCount> result = stockRepository.findGroupStockByProductIdAndType("IN_STOCK", productId);
+
+        return result.stream().collect(Collectors.toList());
     }
 
 

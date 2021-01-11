@@ -1,6 +1,7 @@
 package com.hktv.hktv_interview.service;
 
 import com.hktv.hktv_interview.model.Stock;
+import com.hktv.hktv_interview.utils.IStockCount;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
@@ -14,5 +15,7 @@ public interface StockService {
     List<Stock> getStockByProductId(Integer productId);
 
     void uploadStock(MultipartFile file);
+
+    List<IStockCount> findGroupStockByProductIdAndType(String type, Integer productId);
 
 }

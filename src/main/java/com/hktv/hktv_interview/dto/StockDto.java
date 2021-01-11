@@ -25,6 +25,7 @@ public class StockDto {
         this.qty = stock.getQty();
         this.type = stock.getType();
         this.operator = stock.getOperator();
+        this.createAt = stock.getCreateAt();
         if (stock.getWarehouse() != null) {
             this.warehouse = new WarehouseDto(stock.getWarehouse());
         }
