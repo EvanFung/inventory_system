@@ -47,12 +47,4 @@ public class StockCountDto {
     public void setWarehouseName(String warehouseName) {
         this.warehouseName = warehouseName;
     }
-
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
 }
