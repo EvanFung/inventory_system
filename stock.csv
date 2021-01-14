@@ -1,0 +1,3 @@
+warehouse_id,product_id,operator,qty,type
+1,6,Evan,200,IN_STOCK
+1,6,Evan,500,IN_STOCK
