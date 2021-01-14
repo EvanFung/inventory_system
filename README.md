@@ -17,3 +17,8 @@
 因為今日要開會和討論新項目的事情，所以沒有時間做這個項目，不過感恩有這個項目給我練一下手，以後再繼續學習一下有關Java相關的技術，希望會寫得更快。這個項目其實只用了一天半的時間去寫，因為上班的緣故，沒有太多時間去完成，很多功能上還沒有實現到，非常可惜。由於時間關係，沒能完成這個項目，請見諒。
   
 用到的技術：React、Spring Boot、Spring data JPA、MySQL、Java version 11
+
+Installation
+1. import the init.sql to mysql workbench.
+2. start the project by IDE, connect to datasource.
+3. there are 2 csv files in the root directory.
